@@ -1,0 +1,35 @@
+<h1>Listing projects</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Data Início</th>
+      <th>Previsão</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= project.description %></td>
+        <td><%= project.start %></td>
+        <td><%= project.prevision %></td>
+        <td><%= link_to 'Show', profile_project_path(@profile,project) %></td>
+        <% if user_signed_in? && current_user = project.profile.user %>
+          <td><%= link_to 'Edit', edit_profile_project_path(@profile,project) %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project', new_profile_project_path %>

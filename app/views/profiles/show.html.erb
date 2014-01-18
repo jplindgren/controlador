@@ -1,0 +1,31 @@
+<p>
+  <strong>Name:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @profile.email %>
+</p>
+
+<table class="table">
+	<th>Nome:</th>
+	<th>Descrição</th>
+	<th>Data de Início</th>
+	<th>Previsão de término</th>
+
+	<% @profile.projects.each do |project| %>
+		<tr>			
+			<td><%= link_to project.name, edit_profile_project_path(@profile,project) %></td>
+			<td><%= project.description %></td>
+			<td><%= project.start %></td>
+			<td><%= project.prevision %></td>
+		</tr>
+	<% end %>
+</table>
+
+<p>
+	<%= link_to 'Novo Projeto', new_profile_project_path(@profile, @project) %>
+</p>
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
