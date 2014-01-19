@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   end
 
   def already_has_profile?
-  	self.profile
+  	profile
+  end
+
+  def is_admin?
+    self.try(:admin?)
   end
 end

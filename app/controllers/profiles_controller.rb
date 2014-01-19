@@ -2,12 +2,19 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy ]
   before_filter :owns_profile, :only => [:edit, :update, :destroy]
-  before_filter :already_has_Profile, :only => [:new]
+  before_filter :already_has_profile, :only => [:new]
 
   # GET /Profiles
   # GET /Profiles.json
   def index
-    @profiles = Profile.all
+    if is_admin?
+      @profiles = Profile.all
+    elsif user_signed_in?
+      redirect_to current_user.profile
+      #@profiles = Profile.own(current_user)
+    else
+      redirect_to :back, :flash => { :error => "Voce nao pode acessar essa area sem estar logado!" }
+    end
   end
 
   # GET /Profiles/1
@@ -28,10 +35,8 @@ class ProfilesController < ApplicationController
   # POST /Profiles
   # POST /Profiles.json
   def create    
-    current_user.become_Profile(profile_params)    
-    @profile = current_user.Profile
-    #@profile = Profile.new(profile_params)
-    #@profile.user = current_user
+    current_user.become_profile(profile_params)
+    @profile = current_user.profile
 
     respond_to do |format|
       if @profile.save
@@ -63,7 +68,7 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     respond_to do |format|
-      format.html { redirect_to Profiles_url }
+      format.html { redirect_to profiles_url }
       format.json { head :ok }
       format.js
     end
@@ -80,8 +85,8 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:name, :email)
     end
 
-    def already_has_Profile
-      if user_signed_in? && current_user.already_has_Profile?
+    def already_has_profile
+      if user_signed_in? && current_user.already_has_profile?
         redirect_to profile_path, :flash => { :error => "Voce nao ja possui um profile cadastrado!" }
       end
     end

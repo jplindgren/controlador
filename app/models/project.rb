@@ -6,6 +6,13 @@ class Project < ActiveRecord::Base
 
 	validates_presence_of :name
 
+	def url_to_follow()
+		"http://localhost:3000/profiles/#{profile.id}/projects/#{id}"
+	end
+
+	def get_owner
+		profile.name || "sem profile?"
+	end
 
 	private
 

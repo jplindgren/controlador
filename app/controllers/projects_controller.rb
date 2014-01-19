@@ -1,33 +1,43 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:new, :edit, :create, :update]
+  before_action :owns_profile, :only => [:show]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if is_admin?
+      @projects = Project.all
+    elsif 
+      @projects = current_user.profile.projects
+      @profile = current_user.profile
+    end
+        
+    
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @profile = Profile.find(params[:profile_id])
+    #pra q fazer de novo? Ja estou usando filter
+    #@profile = Profile.find(params[:profile_id])    
   end
 
   # GET /projects/new
   def new
-    @profile = Profile.find(params[:profile_id])
+    #@profile = Profile.find(params[:profile_id])
     @project = Project.new
   end
 
   # GET /projects/1/edit
   def edit
-    @profile = Profile.find(params[:profile_id])
+    #@profile = Profile.find(params[:profile_id])
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    @profile = Profile.find(params[:profile_id])
+    #@profile = Profile.find(params[:profile_id])
     @project = @profile.projects.new(project_params)
 
     respond_to do |format|
@@ -44,7 +54,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    @profile = @project.profile
+    #@profile = @project.profile
     
     respond_to do |format|
       if @project.update(project_params)
@@ -72,9 +82,20 @@ class ProjectsController < ApplicationController
     def set_project
       @project = Project.find(params[:id])
     end
+    
+
+    def set_profile
+      @profile = Profile.find(params[:profile_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description, :start, :prevision)
+    end
+
+    def owns_profile
+      if !user_signed_in? || current_user != @project.profile.user && !is_admin?
+        redirect_to new_user_session_path, :flash => { :error => "Voce nao pode modificar esse profile! Por favor faca login." }
+      end
     end
 end

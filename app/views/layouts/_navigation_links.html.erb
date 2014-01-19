@@ -1,8 +1,7 @@
 <%# add navigation links to this file %>
-<li><a class="brand" href="/">Controlador</a><li>
-<li><%= link_to	"Clientes", profiles_path %></li>
-<li><%= link_to	"Projetos", projects_path %></li>
 <% if user_signed_in? %>
+	<li><%= link_to	"Profile", profiles_path %></li>
+	<li><%= link_to	"Projetos", projects_path %></li>
 	<li><%= link_to	current_user.email, edit_user_registration_path %></li>
 	<li><%= link_to	"Log out", destroy_user_session_path, :method => :delete %></li>
 <% else %>

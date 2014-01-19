@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Controlador" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Controlador" %>">
@@ -12,9 +13,10 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+    <section class="container">
+      <%= render 'layouts/messages' %>
+      <%= yield %>      
+    </section>    
+    <hr/>
   </body>
 </html>
