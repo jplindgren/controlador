@@ -2,16 +2,24 @@ require 'test_helper'
 
 class ProfilesControllerTest < ActionController::TestCase
   setup do
-    @profile = profiles(:one)
+    @profile = profiles(:one)    
+    sign_in @profile.user
   end
 
-  test "should get index" do
+  test "should get redirected to show when get index using non admin users" do
+    get :index
+    assert_redirected_to profile_path(@profile) #controller: "profile", action: "show"
+  end
+
+  test "shoul get index when admin" do
+    sign_in users(:admin)
     get :index
     assert_response :success
     assert_not_nil assigns(:profiles)
   end
 
   test "should get new" do
+    sign_in users(:without_profile)
     get :new
     assert_response :success
   end

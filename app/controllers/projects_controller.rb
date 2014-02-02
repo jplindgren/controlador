@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :set_profile, only: [:new, :edit, :create, :update]
+  before_action :set_profile, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!
   before_action :owns_profile, :only => [:show]
+
 
   # GET /projects
   # GET /projects.json
@@ -12,32 +14,27 @@ class ProjectsController < ApplicationController
       @projects = current_user.profile.projects
       @profile = current_user.profile
     end
-        
-    
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    #pra q fazer de novo? Ja estou usando filter
-    #@profile = Profile.find(params[:profile_id])    
+    #can i use before action instead?
+    @profile = Profile.find(params[:profile_id]) 
   end
 
   # GET /projects/new
   def new
-    #@profile = Profile.find(params[:profile_id])
     @project = Project.new
   end
 
   # GET /projects/1/edit
   def edit
-    #@profile = Profile.find(params[:profile_id])
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    #@profile = Profile.find(params[:profile_id])
     @project = @profile.projects.new(project_params)
 
     respond_to do |format|
@@ -53,9 +50,7 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
-  def update
-    #@profile = @project.profile
-    
+  def update    
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to profile_project_path(@profile,@project), notice: 'Project was successfully updated.' }

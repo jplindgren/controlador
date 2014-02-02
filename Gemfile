@@ -33,7 +33,9 @@ group :doc do
 end
 
 group :development do
-	gem 'rails_layout'
+  gem 'rails_layout'
+
+  gem 'debugger'
 end
 
 # Use ActiveModel has_secure_password

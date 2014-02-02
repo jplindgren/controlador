@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  email: MyString
+  id: 1
+  name: OneGuy1
+  email: some_email@gmail.com
+  user_id: 1
 
 two:
-  name: MyString
-  email: MyString
+  id: 2
+  name: OneGuy1
+  email: some_email2@gmail.com
+  user_id: 2

@@ -1,6 +1,10 @@
 // import the CSS framework
 @import "bootstrap";
 
+body{
+  margin-top: 60px;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;

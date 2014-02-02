@@ -1,13 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 10
   name: MyString
   description: MyText
   start: 2013-12-14
   prevision: 2013-12-14
+  profile_id: 1
 
 two:
+  id: 11
   name: MyString
   description: MyText
   start: 2013-12-14
   prevision: 2013-12-14
+  profile_id: 2

@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy ]
+  before_filter :authenticate_user!, :only => [:index, :new, :create, :edit, :update, :destroy ]
   before_filter :owns_profile, :only => [:edit, :update, :destroy]
   before_filter :already_has_profile, :only => [:new]
 
