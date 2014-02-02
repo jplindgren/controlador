@@ -24,6 +24,7 @@ class ProjectsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to profile_project_path(@profile.id, assigns(:project))
+    assert_equal 'Project was successfully created.', flash[:notice]
   end
 
   test "should show project" do
@@ -31,21 +32,28 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit redirected to show when normal user" do
+    get :edit, profile_id: @profile, id: @project
+    assert_redirected_to profile_project_path(@profile.id, assigns(:project))
+  end
+
+  test "should get edit when admin" do
+    sign_in users(:admin)
     get :edit, profile_id: @profile, id: @project
     assert_response :success
   end
 
   test "should update project" do
     patch :update, profile_id: @project.profile, id: @project, project: { description: @project.description, name: @project.name, prevision: @project.prevision, start: @project.start, profile_id: @project.profile.id } 
+    assert_equal 'Project was successfully updated.', flash[:notice]
     assert_redirected_to profile_project_path(@profile.id, assigns(:project))
   end
 
   #test "should destroy project" do
-   # assert_difference('Project.count', -1) do
-    #  delete :destroy, :id => @project
-   # end
+    #assert_difference('Project.count', -1) do
+      #delete :destroy, :id => @project
+    #end
 
-   # assert_redirected_to profile_project_path(@profile)
+    #assert_redirected_to profile_project_path(@profile)
   #end
 end

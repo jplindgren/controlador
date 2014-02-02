@@ -6,9 +6,9 @@ class ProfilesControllerTest < ActionController::TestCase
     sign_in @profile.user
   end
 
-  test "should get redirected to show when get index using non admin users" do
+  test "should get index redirected to show when admin user" do
     get :index
-    assert_redirected_to profile_path(@profile) #controller: "profile", action: "show"
+    assert_redirected_to profile_path(@profile) 
   end
 
   test "shoul get index when admin" do
@@ -30,6 +30,7 @@ class ProfilesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to profile_path(assigns(:profile))
+    assert_equal 'Profile was successfully created.', flash[:notice]
   end
 
   test "should show profile" do
@@ -45,6 +46,7 @@ class ProfilesControllerTest < ActionController::TestCase
   test "should update profile" do
     patch :update, id: @profile, profile: { email: @profile.email, name: @profile.name }
     assert_redirected_to profile_path(assigns(:profile))
+    assert_equal 'Profile was successfully updated.', flash[:notice]
   end
 
   test "should destroy profile" do

@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    redirect_to profile_project_path @project.profile, @project unless is_admin?
   end
 
   # POST /projects
