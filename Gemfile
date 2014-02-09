@@ -34,8 +34,10 @@ end
 
 group :development do
   gem 'rails_layout'
+end
 
-  gem 'debugger'
+group :development, :test do
+	gem 'rspec-rails'
 end
 
 # Use ActiveModel has_secure_password
@@ -48,10 +50,11 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 #custom
 #Add twitter bootstrap to burst our layout! 
 gem 'bootstrap-sass'
-#devise for authentication
+
+#devise for authentication , #look for CanCan to permissions.
 gem 'devise'

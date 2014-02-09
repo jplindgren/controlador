@@ -4,7 +4,9 @@ class Project < ActiveRecord::Base
 	after_save :new_project_notification
 	after_save :project_change_notification, :if => :name_changed?
 
-	validates_presence_of :name
+	validates_presence_of :name, :profile
+	validates_length_of :name, maximum: 255
+	validates_uniqueness_of :name
 
 	def url_to_follow()
 		"http://localhost:3000/profiles/#{profile.id}/projects/#{id}"

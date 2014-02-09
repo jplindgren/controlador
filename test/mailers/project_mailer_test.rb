@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ProjectMailerTest < ActionMailer::TestCase
-  =begin
+  
   test "new_project" do
     mail = ProjectMailer.new_project
     assert_equal "New project", mail.subject
@@ -29,5 +29,5 @@ class ProjectMailerTest < ActionMailer::TestCase
     assert_equal 'You have been invited by me@example.com', email.subject
     assert_equal read_fixture('invite').join, email.body.to_s
   end
-  =end
+  
 end
