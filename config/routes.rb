@@ -1,6 +1,7 @@
 Controlador::Application.routes.draw do  
 
   get "static_pages/home"
+  get "static_pages/home2"
   devise_for :users
   resources :profiles do
     resources :projects
