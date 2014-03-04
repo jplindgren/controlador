@@ -8,12 +8,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    if is_admin?
-      @projects = Project.all
-    elsif 
-      @projects = current_user.profile.projects
-      @profile = current_user.profile
-    end
+    @projects = current_user.list_valid_projects
   end
 
   # GET /projects/1

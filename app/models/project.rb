@@ -13,7 +13,8 @@ class Project < ActiveRecord::Base
 	end
 
 	def get_owner
-		profile.name || "sem profile?"
+		try(:profile) ? profile.name : "sem profile!"
+		#profile.nil? ? "sem profile!" : profile.name 
 	end
 
 	private

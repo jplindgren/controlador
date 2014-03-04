@@ -38,7 +38,10 @@ end
 
 group :development, :test do
 	gem 'rspec-rails'
+	gem 'debugger'
 end
+
+gem "factory_girl_rails", "~> 4.0", group: :test
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -48,9 +51,6 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
-
-# Use debugger
-gem 'debugger', group: [:development, :test]
 
 #custom
 #Add twitter bootstrap to burst our layout! 

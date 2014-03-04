@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   def is_admin?
     self.try(:admin?)
   end
+
+  def list_valid_projects
+    is_admin? ? Project.all : profile.projects    
+  end
 end
