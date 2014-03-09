@@ -11,10 +11,9 @@ class ProfilesController < ApplicationController
       @profiles = Profile.all
     elsif user_signed_in?
       redirect_to current_user.profile
-      #@profiles = Profile.own(current_user)
     else
       redirect_to :back, :flash => { :error => "Voce nao pode acessar essa area sem estar logado!" }
-    end
+    end    
   end
 
   # GET /Profiles/1
