@@ -3,6 +3,7 @@ class Profile < ActiveRecord::Base
 	belongs_to :user
 
 	validates_presence_of :name, :email 
+	
 	scope :own, lambda{ |user|  }
     scope :own_by_user_id, lambda {|user_id| where(:user_id => user_id) }
     scope :own, lambda {|user| own_by_user_id(user.id) }

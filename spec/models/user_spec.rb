@@ -6,8 +6,10 @@ describe User do
 
 	it { should respond_to(:email) }
 	it { should respond_to(:password) }
+	it { should respond_to(:name) }
 	it { should respond_to(:admin) }
 	it { should respond_to(:profile) }
+	it { should respond_to(:projects) }
 
 	#sanity check
 	it { should be_valid }
@@ -22,6 +24,26 @@ describe User do
 		it { should_not be_valid }
 	end
 
+	describe "when name is blank" do
+		before { user.name = '' }
+		it { should_not be_valid }
+	end
+
+	describe "when name is bigger than the limit" do
+		before { user.name = 'a' * 61 }
+		it { should_not be_valid }
+	end
+
+	describe "when name is smaller than the minimum" do
+		before { user.name = 'aaa' }
+		it { should_not be_valid }
+	end
+
+	describe "when name is provided with spaces" do
+		before { user.name = 'foo bar' }
+		it { should be_valid }
+	end
+
 	describe "when administrator" do
 		before { user.admin = true }
 		it { should be_is_admin }
@@ -29,11 +51,12 @@ describe User do
 
 	describe "#list_valid_projects" do
 		let(:admin) { FactoryGirl.build(:user_admin) }
+		let!(:project1) { FactoryGirl.create(:project, user: user) }
+		let!(:project2) { FactoryGirl.create(:project, user: admin) }
+
     before do
-        user.profile.projects.new(FactoryGirl.attributes_for(:project)) 
-        admin.profile.projects.new(FactoryGirl.attributes_for(:project))
-        user.save
-        admin.save
+      user.save
+      admin.save
     end
 
     describe "when user is admin" do      

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	before_action :configure_permitted_parameters, if: :devise_controller?
 	before_filter :store_location
 
 	def store_location
@@ -16,8 +17,13 @@ class ApplicationController < ActionController::Base
 	end
 
 	def is_admin?
-       current_user.is_admin?
-    end
+   	current_user.is_admin?
+  end
+
+  def configure_permitted_parameters
+  	devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name) }
+  	devise_parameter_sanitizer.for(:edit) { |u| u.permit(:name) }
+	end
 
 	# Prevent CSRF attacks by raising an exception.
 	# For APIs, you may want to use :null_session instead.

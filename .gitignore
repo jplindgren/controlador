@@ -17,3 +17,5 @@
 
 #Ignore email config file
 /config/email.yml
+
+/linux.commands

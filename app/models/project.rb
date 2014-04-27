@@ -1,10 +1,11 @@
 class Project < ActiveRecord::Base
 	belongs_to :profile
+	belongs_to :user
 
 	after_save :new_project_notification
 	after_save :project_change_notification, :if => :name_changed?
 
-	validates_presence_of :name, :profile
+	validates_presence_of :name, :profile, :user
 	validates_length_of :name, maximum: 255
 	validates_uniqueness_of :name
 

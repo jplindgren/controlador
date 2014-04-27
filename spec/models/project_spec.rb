@@ -11,6 +11,7 @@ describe Project do
   it { should respond_to(:start) }
   it { should respond_to(:prevision) }
   it { should respond_to(:profile) }
+  it { should respond_to(:user) }
 
   it { should respond_to(:get_owner) }
 
@@ -20,6 +21,11 @@ describe Project do
   describe "when name is not presented" do
   	before { project.name = " " }
   	it { should_not be_valid }
+  end
+
+  describe "when a user is not presented" do
+    before { project.user = nil }
+    it { should_not be_valid }
   end
 
   describe "when name is bigger than limit" do

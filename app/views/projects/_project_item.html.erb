@@ -1,0 +1,17 @@
+<li id="<%= project_item.id %>">
+  <a href="#" class="list-group-item">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" />
+        </label>
+    </div>
+    <span class="glyphicon glyphicon-star-empty"></span>
+    <span class="name" style="min-width: 120px; display: inline-block;">
+    	<h4><%= project_item.name %></h4>      
+    </span> 
+    <span class="">
+      <%= wrap(project_item.description) %>
+    </span>
+    <span class="badge">Criado <%= time_ago_in_words(project_item.created_at) %> ago.</span>
+  </a>
+</li>
