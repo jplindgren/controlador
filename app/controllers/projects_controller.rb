@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :set_profile, only: [:new, :edit, :create, :update, :destroy]
+  #before_action :set_profile, only: [:new, :edit, :create, :update, :destroy]
   before_action :authenticate_user!
   before_action :owns_profile, :only => [:show]
 
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     #can i use before action instead?
-    @profile = Profile.find(params[:profile_id]) 
+    #@profile = Profile.find(params[:profile_id]) 
   end
 
   # GET /projects/new
@@ -75,9 +75,9 @@ class ProjectsController < ApplicationController
     end
     
 
-    def set_profile
-      @profile = Profile.find(params[:profile_id])
-    end
+    #def set_profile
+    #  @profile = Profile.find(params[:profile_id])
+    #end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params

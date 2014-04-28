@@ -25,7 +25,8 @@ describe "Static pages" do
         it { should_not have_link('Sign Up') }
         it { should_not have_link('Log in') } 
 
-        it { should have_selector('h3.panel-title', text: 'Painel de controle') }        
+        it { should have_selector('h3.panel-title', text: 'Painel de controle') }
+        it { should have_link('PROPOSE PROJECT', href: new_user_project_path(user)) }
 
         it "should list users project" do
             user.projects.each do |project|

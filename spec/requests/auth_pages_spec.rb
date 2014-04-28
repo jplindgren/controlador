@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "AuthPages" do
 	subject { page }
+  let(:user) { FactoryGirl.create(:user) }
 
   describe "sign in" do
-  	let(:user) { FactoryGirl.create(:user) }
   	before { visit new_user_session_path }
 
 		it { should have_title('Sign in') }
@@ -45,9 +45,25 @@ describe "AuthPages" do
       end
 
       it "should create a user" do
-        #expect { signup_submit }.to change(User, :count).by(1)
+        expect { click_button "Sign up" }.to change(User, :count).by(1)
       end    
 
     end
   end
+
+  describe "Authorization" do
+    context "for non-signed users" do
+
+      describe "when atenpting to visit a protected page" do
+        describe "in the project controller" do
+
+          describe "visting the project page" do
+            before { visit user_projects_path user  }
+            it { should have_title('Sign in') }
+          end
+
+        end
+      end
+    end #for non-signed users
+  end #Authorization
 end

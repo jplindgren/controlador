@@ -1,8 +1,11 @@
 Controlador::Application.routes.draw do  
 
   get "static_pages/home"
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
   resources :profiles do
+    resources :projects
+  end
+  resources :users do
     resources :projects
   end
   resources :projects, :only => :index
