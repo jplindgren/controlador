@@ -9,9 +9,9 @@ class ProjectMailer < ActionMailer::Base
   def new_project(project)
     @greeting = "Ola"
     @project = project
-    @profile = @project.profile
+    @user = @project.user
 
-    mail to: @profile.email, subject: "Um novo projeto chamado #{project.name} foi criado para voce!"
+    mail to: @user.email, subject: "Um novo projeto chamado #{project.name} foi criado para voce!"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml

@@ -1,0 +1,13 @@
+<h2>DevelopYou - Fazendo o trabalho certo, da forma certa.</h2>
+
+<p>
+	<%= @greeting %> <%= @user.name %>, um novo projeto chamado <%= @project.name %> foi criado para você. Agora você pode acompanhá-lo <%= link_to "aqui", user_project_path(@user.id, @project.id, only_path: false) %>.
+		
+</p>
+<p>
+	O projeto começará dia <strong><%= @project.start %></strong>	
+	e tem previsao de término em <strong><%= @project.prevision %></strong> 
+</p>
+
+
+

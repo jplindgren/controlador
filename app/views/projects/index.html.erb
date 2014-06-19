@@ -1,7 +1,6 @@
 <div class="container">
   <h1>Projetos</h1>
   <table class="table">
-    <!-- <%= link_to 'Novo Projeto', new_profile_project_path(current_user.profile) %> -->
     <thead>
       <tr>
         <th>Nome</th>
@@ -29,9 +28,9 @@
             <td><%= project.get_owner %></td>
           <% end %>
           <td><%= link_to 'Show', profile_project_path(project.profile, project) %></td>
-          <% if user_signed_in? && (current_user.is_admin? || current_user = project.profile.user)  %>
-            <td><%= link_to 'Edit', edit_profile_project_path(project.profile, project) %></td>
-            <td><%= link_to 'Destroy', profile_project_path(project.profile, project), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if user_signed_in? %>
+            <td><%= link_to 'Edit', edit_user_project_path(project.user, project) %></td>
+            <td><%= link_to 'Destroy', user_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <%end%>        
         </tr>
       <% end %>
