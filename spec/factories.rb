@@ -1,4 +1,10 @@
 FactoryGirl.define do 
+	factory :ticket do
+		sequence(:friendly_id) { |n| "{n}" } 
+		description "A new ticket"
+		association :project, factory: :project
+	end
+
 	factory :project do
 		sequence(:name) { |n| "Test Project#{n}" } 
 		prevision Time.new(2014,12,25)

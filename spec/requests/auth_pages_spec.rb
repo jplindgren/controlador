@@ -58,8 +58,8 @@ describe "AuthPages" do
         describe "in the project controller" do
 
           describe "visting the project page" do
-            before { visit user_projects_path user  }
-            it { should have_title('Sign in') }
+            before { visit projects_path }
+            it { should have_title("Sign in") }
           end
 
         end

@@ -1,0 +1,17 @@
+<li id="<%= ticket_item.id %>">
+  <%= link_to project_ticket_path(@project, ticket_item), :class => "list-group-item" do %>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" />
+        </label>
+    </div>
+    <span class="glyphicon glyphicon-star-empty"></span>
+    <span class="name" style="min-width: 120px; display: inline-block;">
+    	<h4>#<%= ticket_item.friendly_id %></h4>
+    </span>
+    <span class="">
+      <%= wrap(ticket_item.description) %>
+    </span>
+    <span class="badge">Criado <%= time_ago_in_words(ticket_item.created_at) %> ago.</span>
+  <% end %>
+</li>

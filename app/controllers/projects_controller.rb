@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    redirect_to user_project_path @project.user, @project unless is_admin?
+    redirect_to project_path @project unless is_admin? || current_user == @project.user
   end
 
   # POST /projects
@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to user_project_path(current_user,@project), notice: 'Project was successfully created.' }
+        format.html { redirect_to project_path(@project), notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
         format.html { render action: 'new' }
@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
   def update    
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to user_project_path(@project.user, @project), notice: 'Project was successfully updated.' }
+        format.html { redirect_to project_path(@project), notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -74,6 +74,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :description, :start, :prevision, :user_id)
+      params.require(:project).permit(:name, :description, :start, :prevision)
     end
 end

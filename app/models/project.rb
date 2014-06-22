@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
 	belongs_to :user
+	has_many :tickets
 
 	after_save :new_project_notification
 	after_save :project_change_notification, :if => :name_changed?
@@ -7,6 +8,10 @@ class Project < ActiveRecord::Base
 	validates_presence_of :name,:user
 	validates_length_of :name, maximum: 255
 	validates_uniqueness_of :name
+
+	def next_friendly_id_ticket
+		return tickets.count + 1
+	end
 
 	private
 

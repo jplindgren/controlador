@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row clearfix">
+	<div class="col-md-12 column">
+		<h3>
+			Project: <%= @ticket.project.name %> Ticket number <strong><%= @ticket.friendly_id %></strong>
+		</h3>
+		<p>
+			<%= @ticket.description %>
+		</p>
+
+		<%= link_to 'Edit', edit_project_ticket_path(@project, @ticket) %> |
+		<%= link_to 'Back', project_path(@project) %>
+	</div>
+</div>

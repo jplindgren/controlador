@@ -1,4 +1,4 @@
 DevelopYou - Fazendo o trabalho certo, da forma certa.
 
-<%= @greeting %> <%= @user.name %>, um novo projeto chamado <%= @project.name %> foi criado para você. Agora você pode acompanhá-lo pelo link <%= link_to "aqui", user_project_path(@user.id, @project.id) %>.
+<%= @greeting %> <%= @user.name %>, um novo projeto chamado <%= @project.name %> foi criado para você. Agora você pode acompanhá-lo pelo link <%= link_to "aqui", project_path(@project, only_path: false) %>.
 O projeto começará <%= @project.start %> e tem previsao de termino ate <%= @project.prevision %>
