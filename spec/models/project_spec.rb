@@ -45,6 +45,22 @@ describe Project do
       project.save
     end
   end
+
+  describe "progress of a project" do
+    context "when half of the tickets are completed" do
+      before do
+        Rails.logger.debug project.inspect
+        FactoryGirl.create(:ticket, project: project)
+        FactoryGirl.create(:ticket, project: project, completed: true)
+        Rails.logger.debug project.inspect
+      end
+      it { project.progress.should be_equal 50 }
+    end
+    context "when all the tickets are completed" do
+      before { project.tickets.each { |t| t.completed = true } }
+      it { project.progress.should be_equal 100 }
+    end
+  end
 end
 
 

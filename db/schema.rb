@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621191958) do
+ActiveRecord::Schema.define(version: 20140621191731) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140621191958) do
   create_table "tickets", force: true do |t|
     t.integer  "friendly_id"
     t.string   "description"
+    t.boolean  "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"

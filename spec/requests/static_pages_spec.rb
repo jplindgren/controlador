@@ -26,11 +26,11 @@ describe "Static pages" do
         it { should_not have_link('Log in') } 
 
         it { should have_selector('h3.panel-title', text: 'Painel de controle') }
-        it { should have_link('CREATE PROJECT', href: new_project_path(user)) }
+        it { should have_link('CREATE PROJECT', href: new_project_path) }
 
         it "should list users project" do
             user.projects.each do |project|
-                expect(page).to have_selector('li', text: project.name) 
+                expect(page).to have_selector('div', text: project.name) 
             end
         end
     end

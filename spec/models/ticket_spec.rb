@@ -11,11 +11,6 @@ describe Ticket do
 
   it { should be_valid }
 
-  describe "when friendly_id is not presented" do
-  	before { ticket.friendly_id = nil }
-  	it { should_not be_valid }
-  end
-
   describe "when description is not presented" do
   	before { ticket.description = nil }
   	it { should_not be_valid }

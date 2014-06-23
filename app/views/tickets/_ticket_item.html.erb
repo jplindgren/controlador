@@ -15,3 +15,27 @@
     <span class="badge">Criado <%= time_ago_in_words(ticket_item.created_at) %> ago.</span>
   <% end %>
 </li>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.projectDone').on('click', function(event){
+            event.preventDefault();
+            var el = $('.projectDone').closest('li');
+            execute(el);
+        });
+        
+
+        var execute = function(el){
+            var element = el;
+            $.ajax({
+                url: "projects/complete",
+                type: "POST",
+                data: {id: element.val()},
+                success: function (data) {
+                  alert(data);
+                }
+            });
+        };
+    });    
+</script>

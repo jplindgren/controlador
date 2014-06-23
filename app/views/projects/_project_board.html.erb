@@ -1,13 +1,25 @@
-<div class="options">
-    <%= link_to 'CREATE TICKET', new_project_ticket_path(@project),
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Project Options
+        </h3>
+    </div>
+    <div class="panel-body">
+        <%= link_to 'CREATE TICKET', new_project_ticket_path(@project),
                                 { :class => 'btn btn-danger btn-sm btn-block', :role => 'button' } %>
-    <hr />
-    <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#"><span class="badge pull-right">42</span> Inbox </a>
-        </li>
-        <li><a href="http://www.jquery2dotnet.com">Starred</a></li>
-        <li><a href="http://www.jquery2dotnet.com">Important</a></li>
-        <li><a href="http://www.jquery2dotnet.com">Sent Mail</a></li>
-        <li><a href="http://www.jquery2dotnet.com"><span class="badge pull-right">3</span>Drafts</a></li>
-    </ul>
+        <hr />
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+                <a href="#"><span class="badge pull-right"><%= @project.tickets.count %></span> All </a>
+            </li>
+            <li><a href="http://www.jquery2dotnet.com">Not Complete</a></li>
+            <li><a href="http://www.jquery2dotnet.com">Complete</a></li>
+            <li><a href="http://www.jquery2dotnet.com">Important</a></li>
+            <li><a href="http://www.jquery2dotnet.com">Sent Mail</a></li>
+            <li><a href="http://www.jquery2dotnet.com"><span class="badge pull-right">3</span>Drafts</a></li>
+        </ul>
+    </div>
+    <div class="panel-footer">
+        Panel footer
+    </div>
 </div>

@@ -13,6 +13,12 @@ class Project < ActiveRecord::Base
 		return tickets.count + 1
 	end
 
+	def progress
+		tickets_completed = tickets.where(completed: true).count()
+		tickets_all = tickets.count
+		tickets_all != 0 ? (tickets_completed / tickets_all * 100) : 0
+	end
+
 	private
 
 	def new_project_notification

@@ -2,6 +2,7 @@ FactoryGirl.define do
 	factory :ticket do
 		sequence(:friendly_id) { |n| "{n}" } 
 		description "A new ticket"
+		completed false
 		association :project, factory: :project
 	end
 

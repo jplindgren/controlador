@@ -1,3 +1,40 @@
+<div class="row well" id="<%= project_item.id %>">
+    <div class="col-md-3">
+        <img alt="150x150" src="http://lorempixel.com/150/150/" />
+    </div>
+    <div class="col-md-9">
+        <h4>
+            <strong><%= project_item.name %></strong>
+        </h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                     aria-valuemax="<%= project_item.progress %>" style="width: <%= project_item.progress %>%;">
+                     <%= project_item.progress %>%
+          </div>
+        </div>
+        <div class="btn-group btn-group-xs">
+            <button class="btn btn-default" type="button">
+                <em class="glyphicon glyphicon-align-left"></em> Add Ticket
+            </button> 
+            <button class="btn btn-default" type="button">
+                <em class="glyphicon glyphicon-align-center"></em> Edit Project
+            </button> 
+            <button class="btn btn-default" type="button">
+                <em class="glyphicon glyphicon-align-right"></em> Remove Project
+            </button> 
+            <button class="btn btn-default" type="button">
+                <em class="glyphicon glyphicon-align-justify"></em> Ask Question
+            </button>
+        </div>
+        <div class="pull-right">
+            <%= link_to 'GO!', project_path(project_item.id), :class => "btn btn-primary" %>
+        </div>
+    </div>
+</div>
+
+
+
+<!--
 <li id="<%= project_item.id %>">
   <%= link_to project_path(project_item), :class => "list-group-item" do %>
     <div class="checkbox">
@@ -15,27 +52,4 @@
     <span class="badge">Criado <%= time_ago_in_words(project_item.created_at) %> ago.</span>
   <% end %>
 </li>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.projectDone').on('click', function(event){
-            event.preventDefault();
-            var el = $('.projectDone').closest('li');
-            execute(el);
-        });
-        
-
-        var execute = function(el){
-            var element = el;
-            $.ajax({
-                url: "projects/complete",
-                type: "POST",
-                data: {id: element.val()},
-                success: function (data) {
-                  alert(data);
-                }
-            });
-        };
-    });
-    
-</script>
+-->
