@@ -6,14 +6,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.list_valid_projects
+    @projects = current_user.projects
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    #can i use before action instead?
-    #@profile = Profile.find(params[:profile_id]) 
+    @tickets = @project.filter_tickets(params[:query])
   end
 
   # GET /projects/new
@@ -61,7 +60,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end

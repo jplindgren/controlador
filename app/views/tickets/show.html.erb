@@ -8,6 +8,9 @@
 		<p>
 			<%= @ticket.description %>
 		</p>
+		<p>
+			<%= @ticket.completed %>
+		</p>
 
 		<%= link_to 'Edit', edit_project_ticket_path(@project, @ticket) %> |
 		<%= link_to 'Back', project_path(@project) %>

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :projects
+  has_many :projects, -> { order(start: :desc) }
 
   validates :name, :email, presence: true
   validates :name, length: { minimum: 4, maximum: 60 }

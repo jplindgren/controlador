@@ -49,10 +49,9 @@ describe Project do
   describe "progress of a project" do
     context "when half of the tickets are completed" do
       before do
-        Rails.logger.debug project.inspect
-        FactoryGirl.create(:ticket, project: project)
-        FactoryGirl.create(:ticket, project: project, completed: true)
-        Rails.logger.debug project.inspect
+        project.tickets << FactoryGirl.create(:ticket, project: project, completed: false)
+        project.tickets << FactoryGirl.create(:ticket, project: project, completed: true)
+        project.save!
       end
       it { project.progress.should be_equal 50 }
     end
